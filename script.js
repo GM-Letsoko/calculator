@@ -23,6 +23,7 @@ let numbers = $$('.numbers');
 let clear = $('#clear');
 let deleter = $('#delete');
 let equal = $('#equal');
+let operates = $$('.operation')
 
 const operate = (operator, a, b) => {
 	if(operator === multiple) {
@@ -39,10 +40,25 @@ const operate = (operator, a, b) => {
 }
 
 let number1;
+let operation;
 
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
 		number1 = display.textContent += e.target.id;
 		return number1;
 	});
+});
+
+operates.forEach(operat => {
+	operat.addEventListener('click', e => {
+		display.textContent += operat.textContent;
+		operation = $('#' + e.srcElement.id);
+		return number1 + operation;
+	});
+});
+
+number2 = 2;
+
+equal.addEventListener('click', e => { 
+	display.textContent = operate(operation, Number(number1), Number(number2));
 });
