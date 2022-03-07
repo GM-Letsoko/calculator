@@ -38,4 +38,11 @@ const operate = (operator, a, b) => {
 	}
 }
 
-console.log(operate(multiple, 2, 3));
+let number1;
+
+numbers.forEach(number => {
+	number.addEventListener('click', e => { 
+		number1 = display.textContent += e.target.id;
+		return number1;
+	});
+});
