@@ -1,15 +1,42 @@
+#container {
+	width: 13vw;
+	height: 42vh;
+	background-color: teal;
+	border: 4px solid black;
+	margin: 0 auto;
+
+}
+
 #home {
 	flex-wrap: wrap;
 	overflow: hidden;
-	width: 25vw;
-	height: 25vh;
-	border: 2.5px solid black;
+	width: 11.5vw;
+	height: 12.5vh;
+	padding: 5px;
+	margin: 4.5px auto;
+	border: 1.5px solid black;
+	background-color: white;
 }
 
 #top-display {
 	display: flex;
 }
 
-#display2 {
+/*#display2 {
 	float: right;
+}*/
+
+#buttons-div {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2px;
+	margin: 1px 15px;
+}
+
+button {
+	border: 0.1px solid black;
+	border-radius: 4px;
+	width: 45px;
+	color: gold;
+	background-color: black;
 }
