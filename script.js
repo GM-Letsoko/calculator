@@ -1,24 +1,29 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-const add = function(a, b) {
-	return a + b;
+const sum = function(array) {
+	let add = (a, b) => a + b;
+	return array.reduce(add);
 };
 
-const subtract = function(a, b) {
-	return a - b;
+const multiplier = function(array) {
+	let times = (a, b) => a * b;
+	return array.reduce(times);
 };
 
-const divider = function(a, b) {
-	return a / b;
+const divider = function(array) {
+	let divider = (a, b) => a / b;
+	return array.reduce(divider);
 };
 
-const multiply = function(a, b) {
-	return a * b;
+const subtractor = function(array) {
+	let subtract = (a, b) => a - b;
+	return array.reduce(subtract);
 };
 
 let display = $('#display');
 let display1 = $('#display1');
+let display2 = $('#display2');
 let numbers = $$('.numbers');
 let clear = $('#clear');
 let deleter = $('#delete');
@@ -28,16 +33,16 @@ let operates = $$('.operation')
 //returns + - * / or error depending on the operator
 const operate = (operator, a, b) => {
 	if(operator === multiple) {
-		return multiply(a, b);
+		return multiplier([a, b]);
 	} else if(operator === minus) {
-		return subtract(a, b);
+		return subtractor([a, b]);
 	} else if(operator === plus) {
-		return add(a, b);
+		return sum([a, b]);
 	} else if(operator === divide) {
-		return divider(a, b);
-	} else {
+		return divider([a, b]);
+	} /*else {
 		return 'ERROR';
-	}
+	}*/
 }
 
 let number1;
@@ -67,8 +72,8 @@ numbers.forEach(number => {
 	number.addEventListener('click', e => { 
 		if(operation) {
 			number2 = display1.textContent += e.target.id;
-			return number2;
-		}
+			/*return*/number2;
+		} display2.textContent = operate(operation, Number(number1), Number(number2));
 	});
 });
 
@@ -82,5 +87,7 @@ clear.addEventListener('click', e => {
 
 equal.addEventListener('click', e => { 
 	display1.textContent = '';
+	display2.textContent = '';
 	display.textContent = operate(operation, Number(number1), Number(number2));
+	number1 = display.textContent;
 });

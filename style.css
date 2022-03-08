@@ -1,8 +1,15 @@
 #home {
-	display: flex;
 	flex-wrap: wrap;
 	overflow: hidden;
 	width: 25vw;
 	height: 25vh;
 	border: 2.5px solid black;
+}
+
+#top-display {
+	display: flex;
+}
+
+#display2 {
+	float: right;
 }
