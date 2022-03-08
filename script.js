@@ -67,7 +67,7 @@ operates.forEach(operat => {
 	});
 });
 
-//if the operation variable is active return number2 variable;
+//if the operation variable is active return number2 variable; 
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
 		if(operation) {
