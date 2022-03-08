@@ -29,6 +29,7 @@ let clear = $('#clear');
 let deleter = $('#delete');
 let equal = $('#equal');
 let operates = $$('.operation')
+let home = $('#home');
 
 //returns + - * / or error depending on the operator
 const operate = (operator, a, b) => {
@@ -40,9 +41,7 @@ const operate = (operator, a, b) => {
 		return sum([a, b]);
 	} else if(operator === divide) {
 		return divider([a, b]);
-	} /*else {
-		return 'ERROR';
-	}*/
+	} 
 }
 
 let number1;
@@ -67,23 +66,33 @@ operates.forEach(operat => {
 	});
 });
 
-//if the operation variable is active return number2 variable; 
+//if the operation variable is active return number2 variable;
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
 		if(operation) {
 			number2 = display1.textContent += e.target.id;
-			/*return*/number2;
-		} display2.textContent = operate(operation, Number(number1), Number(number2));
+			number2;
+		} //display2.textContent = operate(operation, Number(number1), Number(number2));
 	});
 });
 
 clear.addEventListener('click', e => {
 	display.textContent = '';
 	display1.textContent = '';
+	display2.textContent = '';
 	number1 = '';
 	number2 = '';
 	operation = undefined;
-})
+});
+
+deleter.addEventListener('click', e => {
+	if(display1.textContent) { 
+		display1.textContent = display1.textContent.substr(0, display1.textContent.length - 1);
+		display2.textContent = display2.textContent.substr(0, display2.textContent.length - 1);
+	} else if(display.textContent) { 
+		display.textContent = display.textContent.substr(0, display.textContent.length - 1);
+	} 
+});
 
 equal.addEventListener('click', e => { 
 	display1.textContent = '';
