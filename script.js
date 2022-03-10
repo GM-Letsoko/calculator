@@ -72,14 +72,14 @@ numbers.forEach(number => {
 		if(operation) {
 			number2 = display1.textContent += e.target.id;
 			number2;
-		} //display2.textContent = operate(operation, Number(number1), Number(number2));
+		} display2.textContent = operate(operation, Number(number1), Number(number2));
 	});
 });
 
 clear.addEventListener('click', e => {
 	display.textContent = '';
 	display1.textContent = '';
-	//display2.textContent = '';
+	display2.textContent = '';
 	number1 = '';
 	number2 = '';
 	operation = undefined;
@@ -88,7 +88,9 @@ clear.addEventListener('click', e => {
 deleter.addEventListener('click', e => {
 	if(display1.textContent) { 
 		display1.textContent = display1.textContent.substr(0, display1.textContent.length - 1);
+		number2 = display1.textContent;
 		//display2.textContent = display2.textContent.substr(0, display2.textContent.length - 1);
+		display2.textContent = operate(operation, Number(number1), Number(number2));
 	} else if(display.textContent) { 
 		display.textContent = display.textContent.substr(0, display.textContent.length - 1);
 	} 
@@ -96,7 +98,7 @@ deleter.addEventListener('click', e => {
 
 equal.addEventListener('click', e => { 
 	display1.textContent = '';
-	//display2.textContent = '';
+	display2.textContent = '';
 	display.textContent = operate(operation, Number(number1), Number(number2)).toFixed(3);
 	number1 = display.textContent;
 });

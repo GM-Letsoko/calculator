@@ -8,9 +8,10 @@
 }
 
 #home {
+/*	display: flex;
 	flex-wrap: wrap;
 	overflow: hidden;
-	width: 11.5vw;
+*/	width: 11.5vw;
 	height: 12.5vh;
 	padding: 5px;
 	margin: 4.5px auto;
@@ -18,13 +19,14 @@
 	background-color: white;
 }
 
-#top-display {
-	display: flex;
+#display2 {
+	float: right;
 }
 
-/*#display2 {
-	float: right;
-}*/
+#top-display {
+	display: flex;
+	flex-wrap: wrap;
+}
 
 #buttons-div {
 	display: flex;
