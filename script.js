@@ -70,7 +70,7 @@ operates.forEach(operat => {
 		display.textContent += operat.textContent;
 		operation = e.target.id;
 		number2 = '';
-		bottom_display.textContent = '';
+		display2.textContent = '';
 	});
 });
 
