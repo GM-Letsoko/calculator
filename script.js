@@ -4,7 +4,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const display = $('#display');
-let display2 = $('#display2');
+let bottom_display = $('#bottom_display');
 let numbers = $$('.numbers');
 let clear = $('#clear');
 let deleter = $('#delete');
@@ -12,38 +12,12 @@ let equal = $('#equal');
 let operates = $$('.operation')
 let home = $('#home');
 
-//returns + - * / or error depending on the operator
 const operate = (operator, a, b) => {
-	if(operator === '*') {
-		return multiplier([a, b]);
-	} else if(operator === '-') {
-		return subtractor([a, b]);
-	} else if(operator === '+') {
-		return sum([a, b]);
-	} else if(operator === '/') {
-		return divider([a, b]);
-	} 
+	if(operator === '*') return [a, b].reduce((a, b) => a * b); //array.reduce((a, b) => a * b);
+	else if(operator === '-') return [a, b].reduce((a, b) => a - b);
+	else if(operator === '+') return [a, b].reduce((a, b) => a + b, 0);
+	else if(operator === '/') return [a, b].reduce((a, b) => a / b);
 }
-
-const subtractor = function(array) {
-	let subtract = (a, b) => a - b;
-	return array.reduce(subtract);
-};
-
-const sum = function(array) {
-	let add = (a, b) => a + b;
-	return array.reduce(add);
-};
-
-const multiplier = function(array) {
-	let times = (a, b) => a * b;
-	return array.reduce(times);
-};
-
-const divider = function(array) {
-	let divider = (a, b) => a / b;
-	return array.reduce(divider);
-};
 
 let number1;
 let number2;
@@ -70,40 +44,42 @@ operates.forEach(operat => {
 		display.textContent += operat.textContent;
 		operation = e.target.id;
 		number2 = '';
-		display2.textContent = '';
+		bottom_display.textContent = '';
 	});
 });
 
 //if the operation variable is active return number2 variable;
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
-		if(e.target.id === '.' && display1.textContent.includes('.')) return;
+		if(e.target.id === '.' && display.textContent.includes('.')) return;
 		if(operation) {
 			display.textContent += e.target.id; 
 			number2 += e.target.id;
 			number2; 
-			display2.textContent = operate(operation, Number(number1), Number(number2));
+			bottom_display.textContent = operate(operation, Number(number1), Number(number2));
 		} 
 	});
 });
 
 clear.addEventListener('click', e => {
 	display.textContent = '';
-	display2.textContent = '';
+	bottom_display.textContent = '';
 	number1 = '';
 	number2 = '';
 	operation = undefined;
 });
 
+//needs fixing
 deleter.addEventListener('click', e => {
 	if(display.textContent) { 
 		display.textContent = display.textContent.substr(0, display.textContent.length - 1);
-		display2.textContent = display2.textContent.substr(0, display2.textContent.length - 1);;
+		bottom_display.textContent = bottom_display.textContent.substr(0, bottom_display.textContent.length - 1);;
 	} 
 });
 
 equal.addEventListener('click', e => { 
-	display2.textContent = '';
-	display.textContent = operate(operation, Number(number1), Number(number2));
+	display.textContent = bottom_display.textContent;
 	number1 = display.textContent;
+	number2 = '';
+	bottom_display.textContent = '';
 });
