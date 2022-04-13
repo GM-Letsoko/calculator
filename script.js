@@ -9,11 +9,11 @@ let numbers = $$('.numbers');
 let clear = $('#clear');
 let deleter = $('#delete');
 let equal = $('#equal');
-let operates = $$('.operation')
-let home = $('#home');
+let operates = $$('.operation');
 
 const operate = (operator, a, b) => {
-	if(operator === '*') return [a, b].reduce((a, b) => a * b); //array.reduce((a, b) => a * b);
+								//array.reduce((a, b) => a * b);
+	if(operator === '*') return [a, b].reduce((a, b) => a * b); 
 	else if(operator === '-') return [a, b].reduce((a, b) => a - b);
 	else if(operator === '+') return [a, b].reduce((a, b) => a + b, 0);
 	else if(operator === '/') return [a, b].reduce((a, b) => a / b);
@@ -26,8 +26,8 @@ let operation;
 //if the operation variable is not active return number1 variable; 
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
-		if(e.target.id === '.' && display.textContent.includes('.')) return;
 		if(!operation) {
+			if(e.target.id === '.' && number1.includes('.')) return;
 			number1 = display.textContent += e.target.id;
 			return number1;
 		}
@@ -44,15 +44,14 @@ operates.forEach(operat => {
 		display.textContent += operat.textContent;
 		operation = e.target.id;
 		number2 = '';
-		bottom_display.textContent = '';
 	});
 });
 
 //if the operation variable is active return number2 variable;
 numbers.forEach(number => {
 	number.addEventListener('click', e => { 
-		if(e.target.id === '.' && display.textContent.includes('.')) return;
 		if(operation) {
+			if(e.target.id === '.' && number2.includes('.')) return;
 			display.textContent += e.target.id; 
 			number2 += e.target.id;
 			number2; 
@@ -69,12 +68,11 @@ clear.addEventListener('click', e => {
 	operation = undefined;
 });
 
-//needs fixing
 deleter.addEventListener('click', e => {
-	if(display.textContent) { 
-		display.textContent = display.textContent.substr(0, display.textContent.length - 1);
-		bottom_display.textContent = bottom_display.textContent.substr(0, bottom_display.textContent.length - 1);;
-	} 
+	display.textContent = display.textContent.slice(0, - 1);
+	bottom_display.textContent = '';
+	number2 = '';
+
 });
 
 equal.addEventListener('click', e => { 
